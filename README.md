@@ -4,6 +4,6 @@
 #insmod mymod.ko</br>
 <h3>CHANGE IP</h3>
 #ifconfig my_dev down</br>
-#echo "111.222.333.444" >/proc/mymod</br
+#echo "111.222.333.444" >/proc/mymod</br>
 #ifconfig my_dev up</br>
 

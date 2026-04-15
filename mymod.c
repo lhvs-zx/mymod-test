@@ -101,10 +101,7 @@ static ssize_t myproc_write(struct file *file, const char __user *ubuf, size_t c
 
     my_dev->netdev_ops = &mymod_ops;
     register_netdev(my_dev);
-    return count;    
-
-    return count;    
-    
+    return count;        
 }
 static int mymod_dev_init(struct net_device *dev){
 

@@ -91,6 +91,17 @@ static ssize_t myproc_write(struct file *file, const char __user *ubuf, size_t c
         kstrtouint(tb,10,&rez);
         bifa[3]=rez;
     }
+    unregister_netdev(my_dev);
+    free_netdev(my_dev);
+    ifa = kzalloc(sizeof(struct in_ifaddr), GFP_KERNEL);
+    if (!ifa) return count;
+    my_dev = alloc_netdev_mqs(sizeof(struct mymod_priv), "my_dev",0, ether_setup,1,1);
+    if (my_dev == NULL)
+        return -ENOMEM;
+
+    my_dev->netdev_ops = &mymod_ops;
+    register_netdev(my_dev);
+    return count;    
 
     return count;    
     

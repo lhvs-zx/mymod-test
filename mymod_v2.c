@@ -59,15 +59,6 @@ static struct rtnl_link_ops mymod_link_ops __read_mostly = {
 static const struct proc_ops my_props = {
     .proc_write = myproc_write,
 };
-static void nl_recv_msg(struct sk_buff *skb) {
-    // Process received netlink message here
-}
-static struct netlink_kernel_cfg cfg = {
-    .groups		= 0,
-    .flags		= 0,
-    
-};
-
 
 
 void addattr_l(struct nlmsghdr *n, int maxlen, int type, const void *data, int alen) {
@@ -136,7 +127,6 @@ void del_ip(void){
     static struct in_ifaddr *ifa;
     ifa=my_dev->ip_ptr->ifa_list;
     if(!ifa)return ;
-    printk( "ifa = %x\n", ifa->ifa_local);
     struct {
         struct nlmsghdr n;
         struct ifaddrmsg ifa;
